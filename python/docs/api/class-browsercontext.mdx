@@ -713,6 +713,42 @@ await browser.close()
 </TabItem>
 </Tabs>
 
+It is possible to examine the request to decide the route action. For example, mocking all requests that contain some post data, and leaving all other requests as is:
+
+<Tabs
+  groupId="python-flavor"
+  defaultValue="sync"
+  values={[
+    {label: 'Sync', value: 'sync'},
+    {label: 'Async', value: 'async'}
+  ]
+}>
+<TabItem value="sync">
+
+```py
+def handle_route(route):
+  if ("my-string" in route.request.post_data)
+    route.fulfill(body="mocked-data")
+  else
+    route.continue_()
+context.route("/api/**", handle_route)
+```
+
+</TabItem>
+<TabItem value="async">
+
+```py
+def handle_route(route):
+  if ("my-string" in route.request.post_data)
+    route.fulfill(body="mocked-data")
+  else
+    route.continue_()
+await context.route("/api/**", handle_route)
+```
+
+</TabItem>
+</Tabs>
+
 Page routes (set up with [page.route(url, handler)](./api/class-page.mdx#pagerouteurl-handler)) take precedence over browser context routes when request matches both handlers.
 
 To remove a route with its handler you can use [browser_context.unroute(url, **kwargs)](./api/class-browsercontext.mdx#browser_contextunrouteurl-kwargs).
