@@ -99,13 +99,11 @@ Here is an example fixture that automatically saves debug logs when the test fai
 
 To set something up once before running all tests, use `globalSetup` option in the [configuration file](#configuration-object).
 
-Similarly, use `globalTeardown` to run something once after all the tests. Alternatively, let `globalSetup` return a function that will be used as a global teardown. You can pass data such as port number, authentication tokens, etc. from your global setup to your tests using environment.
+Similarly, use `globalTeardown` to run something once after all the tests. Alternatively, let `globalSetup` return a function that will be used as a global teardown.
 
 Here is a global setup example that runs an app.
 
 Now add `globalSetup` option to the configuration file.
-
-Tests will now run after the global setup is done and will have access to the data created in the global setup:
 
 ## Projects
 
